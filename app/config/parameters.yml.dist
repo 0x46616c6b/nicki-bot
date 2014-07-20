@@ -1,0 +1,13 @@
+parameters:
+    mailer_transport:       smtp
+    mailer_host:            127.0.0.1
+    mailer_user:            ~
+    mailer_password:        ~
+
+    locale:                 de
+    secret:                 V3ryS3cr3t
+
+    consumer_key:           C0QVlbdrP0qxeTNblLSwn0e0G
+    consumer_secret:        TZ4Q21ro4WAIxELu8Wk22XVSAEUEfggiYK5ixyHlSJx00OUBmM
+    access_token:           92558571-GCxeihClPU9ls2UQq0duZNBlLvx67gQP91pXiuEW9
+    access_token_secret:    1SokEqG1qjlPoidT5kZoFQdMFPXTVCYiyouIVP6QL2shJ

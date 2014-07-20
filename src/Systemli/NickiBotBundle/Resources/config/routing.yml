@@ -1,0 +1,3 @@
+systemli_nicki_bot_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: SystemliNickiBotBundle:Default:index }

@@ -1,0 +1,28 @@
+parameters:
+    systemli_nicki_bot.consumer_key: %consumer_key%
+    systemli_nicki_bot.consumer_secret: %consumer_secret%
+    systemli_nicki_bot.access_token: %access_token%
+    systemli_nicki_bot.access_token_secret: %access_token_secret%
+
+services:
+    systemli.twitter.application.app:
+        class: Systemli\Component\Twitter\Application\App
+        arguments: [{ consumer_key: %systemli_nicki_bot.consumer_key%, consumer_secret: %systemli_nicki_bot.consumer_secret%, access_token: %systemli_nicki_bot.access_token%, access_token_secret: %systemli_nicki_bot.access_token_secret% }]
+
+    systemli.twitter.helper.reply:
+        class: Systemli\Component\Twitter\Helper\ReplyHelper
+        arguments: [@systemli.twitter.locker.locker]
+
+    systemli.twitter.locker.tweet_locker:
+        class: Systemli\Component\Twitter\Locker\TweetLocker
+        arguments: [@snc_redis.default]
+
+    systemli.twitter.locker.user_locker:
+        class: Systemli\Component\Twitter\Locker\UserLocker
+        arguments: [@snc_redis.default]
+
+    systemli.twitter.locker.locker:
+        class: Systemli\Component\Twitter\Locker\LockerChain
+        calls:
+          - [setLocker, [@systemli.twitter.locker.user_locker]]
+          - [setLocker, [@systemli.twitter.locker.tweet_locker]]
