@@ -50,7 +50,7 @@ class NickiBotCommand extends ContainerAwareCommand
 
             /** @var $tweet TweetInterface */
             foreach ($tweets as $tweet) {
-                if ($count > $limit) {
+                if ($count >= $limit) {
                     continue;
                 }
 
@@ -70,6 +70,7 @@ class NickiBotCommand extends ContainerAwareCommand
                                 $this->getContainer()->get('systemli.twitter.locker.tweet_locker')->lock($tweet);
 
                                 $count += 1;
+                                sleep(mt_rand(5,25));
                             } else {
                                 $this->getLogger()->error("reply_error", array('result' => json_encode($reply)));
                             }

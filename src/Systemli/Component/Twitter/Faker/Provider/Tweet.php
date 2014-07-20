@@ -13,7 +13,7 @@ class Tweet extends Base
         "@{{username}} kann es sein das du Nicki meinst?",
         "@{{username}} wieso T-Shirt? Im Osten sagt man Nicki!",
         "@{{username}} das heißt Nicki!",
-        "Was soll denn ein T-Shirt sein? Oder meint @{{username}} etwa Nicki?",
+        "Was soll denn ein T-Shirt sein? Oder meint @{{username}} etwa ein Nicki?",
     );
 
     public function tweet()
