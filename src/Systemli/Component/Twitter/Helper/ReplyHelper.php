@@ -13,16 +13,16 @@ use Systemli\Component\Twitter\Model\TweetInterface;
 class ReplyHelper
 {
     /**
-     * @var LockerInterface
+     * @var ReplyDeciderInterface
      */
-    private $locker;
+    private $decider;
 
     /**
-     * @param LockerInterface $locker
+     * @param ReplyDeciderInterface $decider
      */
-    public function __construct(LockerInterface $locker)
+    public function __construct(ReplyDeciderInterface $decider)
     {
-        $this->locker = $locker;
+        $this->decider = $decider;
     }
 
     /**
@@ -31,15 +31,7 @@ class ReplyHelper
      */
     public function isPossibleReply(TweetInterface $tweet)
     {
-        // TODO: Replace with ReplyDeciderChain
-        return $tweet->getLang() === "de" &&
-            $tweet->getUser()->getLang() === "de" &&
-            null === $tweet->getInReplyToStatusId() &&
-            !$this->locker->isLocked($tweet) &&
-            $tweet->getRetweeted() == false &&
-            preg_match('/^rt /i', $tweet->getText()) == false &&
-            preg_match('/nicki/i', $tweet->getText()) == false
-            ;
+        return $this->decider->decide($tweet);
     }
 
     /**

@@ -11,7 +11,28 @@ services:
 
     systemli.twitter.helper.reply:
         class: Systemli\Component\Twitter\Helper\ReplyHelper
+        arguments: [@systemli.twitter.helper.decider]
+
+    systemli.twitter.helper.decider:
+        class: Systemli\Component\Twitter\Helper\ReplyDeciderChain
+        calls:
+          - [setDecider, [@systemli.twitter.helper.decider_language]]
+          - [setDecider, [@systemli.twitter.helper.decider_type]]
+          - [setDecider, [@systemli.twitter.helper.decider_lock]]
+          - [setDecider, [@systemli.twitter.helper.decider_content]]
+
+    systemli.twitter.helper.decider_language:
+        class: Systemli\Component\Twitter\Helper\ReplyLanguageDecider
+
+    systemli.twitter.helper.decider_type:
+        class: Systemli\Component\Twitter\Helper\ReplyTypeDecider
+
+    systemli.twitter.helper.decider_lock:
+        class: Systemli\Component\Twitter\Helper\ReplyLockDecider
         arguments: [@systemli.twitter.locker.locker]
+
+    systemli.twitter.helper.decider_content:
+        class: Systemli\Component\Twitter\Helper\ReplyContentDecider
 
     systemli.twitter.locker.tweet_locker:
         class: Systemli\Component\Twitter\Locker\TweetLocker
