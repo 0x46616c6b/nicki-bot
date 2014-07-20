@@ -63,7 +63,9 @@ class NickiBotCommand extends ContainerAwareCommand
                         }
 
                         if (!$input->getOption(self::OPION_DRY_RUN)) {
-                            sleep(mt_rand(10,50));
+                            if ($limit !== 1) {
+                                sleep(mt_rand(10,50));
+                            }
 
                             $reply = $app->reply($message, $tweet->getId());
                             $reply = $serializer->deserialize(json_encode($reply), 'Systemli\Component\Twitter\Model\Tweet', 'json');
