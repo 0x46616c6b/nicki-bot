@@ -58,11 +58,13 @@ class NickiBotCommand extends ContainerAwareCommand
                     try {
                         $message = $replyHelper->generateReplyMessage($tweet);
 
-                        if (OutputInterface::VERBOSITY_VERBOSE) {
+                        if ($output->getVerbosity() === OutputInterface::VERBOSITY_VERBOSE) {
                             $this->verboseReply($output, $tweet, $message);
                         }
 
                         if (!$input->getOption(self::OPION_DRY_RUN)) {
+                            sleep(mt_rand(10,50));
+
                             $reply = $app->reply($message, $tweet->getId());
                             $reply = $serializer->deserialize(json_encode($reply), 'Systemli\Component\Twitter\Model\Tweet', 'json');
 
@@ -70,7 +72,6 @@ class NickiBotCommand extends ContainerAwareCommand
                                 $this->getContainer()->get('systemli.twitter.locker.locker')->lock($tweet);
 
                                 $count += 1;
-                                sleep(mt_rand(5,25));
                             } else {
                                 $this->getLogger()->error("reply_error", array('result' => json_encode($reply)));
                             }
