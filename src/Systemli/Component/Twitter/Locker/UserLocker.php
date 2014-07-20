@@ -26,11 +26,12 @@ class UserLocker implements LockerInterface
     }
 
     /**
-     * @param TweetInterface $tweet
+     * {@inheritDoc}
      */
     public function lock(TweetInterface $tweet)
     {
-        $this->redis->set(sprintf("%s:%s", self::PREFIX, $tweet->getUser()->getId()), true);
+        $this->redis->set($this->getKey($tweet), true);
+        $this->redis->expire($this->getKey($tweet), 86400);
     }
 
     /**
@@ -38,6 +39,16 @@ class UserLocker implements LockerInterface
      */
     public function isLocked(TweetInterface $tweet)
     {
-        return (bool) $this->redis->get(sprintf("%s:%s", self::PREFIX, $tweet->getUser()->getId()));
+        return (bool) $this->redis->get($this->getKey($tweet));
+    }
+
+    /**
+     * @param TweetInterface $tweet
+     *
+     * @return string
+     */
+    private function getKey(TweetInterface $tweet)
+    {
+        return sprintf("%s:%s", self::PREFIX, $tweet->getUser()->getId());
     }
 }

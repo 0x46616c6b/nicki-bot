@@ -22,6 +22,16 @@ class LockerChain implements LockerInterface
     /**
      * {@inheritDoc}
      */
+    public function lock(TweetInterface $tweet)
+    {
+        foreach ($this->locker as $locker) {
+            $locker->lock($tweet);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function isLocked(TweetInterface $tweet)
     {
         $isLocked = false;

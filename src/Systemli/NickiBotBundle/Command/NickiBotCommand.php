@@ -67,7 +67,7 @@ class NickiBotCommand extends ContainerAwareCommand
                             $reply = $serializer->deserialize(json_encode($reply), 'Systemli\Component\Twitter\Model\Tweet', 'json');
 
                             if ($reply instanceof TweetInterface) {
-                                $this->getContainer()->get('systemli.twitter.locker.tweet_locker')->lock($tweet);
+                                $this->getContainer()->get('systemli.twitter.locker.locker')->lock($tweet);
 
                                 $count += 1;
                                 sleep(mt_rand(5,25));

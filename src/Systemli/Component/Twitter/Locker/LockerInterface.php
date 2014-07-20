@@ -11,6 +11,11 @@ interface LockerInterface
 {
     /**
      * @param TweetInterface $tweet
+     */
+    function lock(TweetInterface $tweet);
+
+    /**
+     * @param TweetInterface $tweet
      * @return bool
      */
     function isLocked(TweetInterface $tweet);
