@@ -8,34 +8,14 @@ namespace Systemli\Component\Twitter\Model;
 interface UserInterface
 {
     /**
-     * @param string $description
-     */
-    function setDescription($description);
-
-    /**
-     * @param string $url
-     */
-    function setUrl($url);
-
-    /**
      * @return string
      */
     function getLang();
 
     /**
-     * @param int $followersCount
-     */
-    function setFollowersCount($followersCount);
-
-    /**
      * @return string
      */
     function getName();
-
-    /**
-     * @param string $id
-     */
-    function setId($id);
 
     /**
      * @return int
@@ -48,16 +28,6 @@ interface UserInterface
     function getScreenName();
 
     /**
-     * @param int $friendsCount
-     */
-    function setFriendsCount($friendsCount);
-
-    /**
-     * @param \DateTime $createdAt
-     */
-    function setCreatedAt($createdAt);
-
-    /**
      * @return int
      */
     function getFollowersCount();
@@ -66,16 +36,6 @@ interface UserInterface
      * @return int
      */
     function getFavouritesCount();
-
-    /**
-     * @param string $screenName
-     */
-    function setScreenName($screenName);
-
-    /**
-     * @param string $name
-     */
-    function setName($name);
 
     /**
      * @return int
@@ -101,26 +61,6 @@ interface UserInterface
      * @return int
      */
     function getListedCount();
-
-    /**
-     * @param int $favoritesCount
-     */
-    function setFavouritesCount($favoritesCount);
-
-    /**
-     * @param int $statusCount
-     */
-    function setStatusesCount($statusCount);
-
-    /**
-     * @param string $lang
-     */
-    function setLang($lang);
-
-    /**
-     * @param int $listsCount
-     */
-    function setListedCount($listsCount);
 
     /**
      * @return \DateTime

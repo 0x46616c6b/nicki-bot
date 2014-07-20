@@ -25,7 +25,7 @@ class NickiBotCommand extends ContainerAwareCommand
         $this
             ->setName('nickibot:run')
             ->setDescription('Run the bot')
-            ->addOption(self::OPTION_LIMIT, 'l', InputOption::VALUE_OPTIONAL, 'Limit for the tweets we replying', 5)
+            ->addOption(self::OPTION_LIMIT, 'l', InputOption::VALUE_OPTIONAL, 'Limit for the tweets we replying', 1)
             ->addOption(self::OPION_DRY_RUN, NULL, InputOption::VALUE_NONE, "Test the generated Tweets")
         ;
     }
@@ -38,17 +38,22 @@ class NickiBotCommand extends ContainerAwareCommand
         AnnotationRegistry::registerLoader('class_exists');
         $serializer = SerializerBuilder::create()->build();
 
-        $result = $app->search('"T-Shirt"', ['lang' => 'de', 'result_type' => 'resent', 'count' => $limit]);
+        $reply = $app->search('"T-Shirt"', ['lang' => 'de', 'result_type' => 'resent', 'count' => 50]);
 
-        if (isset($result['statuses'])) {
-            foreach($result['statuses'] as $status) {
+        if (isset($reply['statuses'])) {
+            foreach($reply['statuses'] as $status) {
                 $tweets[] = $serializer->deserialize(json_encode($status), 'Systemli\Component\Twitter\Model\Tweet', 'json');
             }
 
             $replyHelper = $this->getContainer()->get('systemli.twitter.helper.reply');
+            $count = 0;
 
             /** @var $tweet TweetInterface */
             foreach ($tweets as $tweet) {
+                if ($count > $limit) {
+                    continue;
+                }
+
                 if ($replyHelper->isPossibleReply($tweet)) {
                     try {
                         $message = $replyHelper->generateReplyMessage($tweet);
@@ -58,17 +63,17 @@ class NickiBotCommand extends ContainerAwareCommand
                         }
 
                         if (!$input->getOption(self::OPION_DRY_RUN)) {
-                            $result = $app->reply($message, $tweet->getId());
-                            $answer = $serializer->deserialize(json_encode($result), 'Systemli\Component\Twitter\Model\Tweet', 'json');
+                            $reply = $app->reply($message, $tweet->getId());
+                            $reply = $serializer->deserialize(json_encode($reply), 'Systemli\Component\Twitter\Model\Tweet', 'json');
 
-                            if ($answer instanceof TweetInterface) {
+                            if ($reply instanceof TweetInterface) {
                                 $this->getContainer()->get('systemli.twitter.locker.tweet_locker')->lock($tweet);
+
+                                $count += 1;
                             } else {
-                                $this->getLogger()->error("reply_error", array('result' => json_encode($answer)));
+                                $this->getLogger()->error("reply_error", array('result' => json_encode($reply)));
                             }
                         }
-
-                        $this->getContainer()->get('systemli.twitter.locker.tweet_locker')->lock($tweet);
                     } catch (\Exception $e) {
                         $this->getLogger()->alert("reply_error", array($e->getMessage()));
                     }
@@ -95,10 +100,11 @@ class NickiBotCommand extends ContainerAwareCommand
     {
         $output->writeln(
             sprintf(
-                "<info>ID: %s # User: %s (%s)</info>\n%s\n---\n<comment>%s</comment>\n%s",
+                "<info>ID: %s # User: %s (%s)</info>\n%s\n%s\n---\n<comment>%s</comment>\n%s",
                 $tweet->getId(),
                 $tweet->getUser()->getScreenName(),
                 $tweet->getUser()->getId(),
+                $tweet->getCreatedAt()->format('r T'),
                 $tweet->getText(),
                 $message,
                 str_repeat('-', strlen($message))

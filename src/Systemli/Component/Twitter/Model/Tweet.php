@@ -89,19 +89,18 @@ class Tweet implements TweetInterface
     private $entities;
 
     /**
+     * @Type("boolean")
+     *
+     * @var bool
+     */
+    private $retweeted;
+
+    /**
      * {@inhitDoc}
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * {@inhitDoc}
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**
@@ -115,25 +114,9 @@ class Tweet implements TweetInterface
     /**
      * {@inhitDoc}
      */
-    public function setText($text)
-    {
-        $this->text = $text;
-    }
-
-    /**
-     * {@inhitDoc}
-     */
     public function getSource()
     {
         return $this->source;
-    }
-
-    /**
-     * {@inhitDoc}
-     */
-    public function setSource($source)
-    {
-        $this->source = $source;
     }
 
     /**
@@ -147,25 +130,9 @@ class Tweet implements TweetInterface
     /**
      * {@inhitDoc}
      */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * {@inhitDoc}
-     */
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * {@inhitDoc}
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
     }
 
     /**
@@ -179,25 +146,9 @@ class Tweet implements TweetInterface
     /**
      * {@inhitDoc}
      */
-    public function setInReplyToStatusId($inReplyToStatusId)
-    {
-        $this->inReplyToStatusId = $inReplyToStatusId;
-    }
-
-    /**
-     * {@inhitDoc}
-     */
     public function getInReplyToScreenName()
     {
         return $this->inReplyToScreenName;
-    }
-
-    /**
-     * {@inhitDoc}
-     */
-    public function setInReplyToScreenName($inReplyToScreenName)
-    {
-        $this->inReplyToScreenName = $inReplyToScreenName;
     }
 
     /**
@@ -211,25 +162,9 @@ class Tweet implements TweetInterface
     /**
      * {@inhitDoc}
      */
-    public function setRetweetCount($retweetCount)
-    {
-        $this->retweetCount = $retweetCount;
-    }
-
-    /**
-     * {@inhitDoc}
-     */
     public function getFavoriteCount()
     {
         return $this->favoriteCount;
-    }
-
-    /**
-     * {@inhitDoc}
-     */
-    public function setFavoriteCount($favoriteCount)
-    {
-        $this->favoriteCount = $favoriteCount;
     }
 
     /**
@@ -243,14 +178,6 @@ class Tweet implements TweetInterface
     /**
      * {@inhitDoc}
      */
-    public function setLang($lang)
-    {
-        $this->lang = $lang;
-    }
-
-    /**
-     * {@inhitDoc}
-     */
     public function getEntities()
     {
         return $this->entities;
@@ -259,8 +186,8 @@ class Tweet implements TweetInterface
     /**
      * {@inhitDoc}
      */
-    public function setEntities(array $entities)
+    public function getRetweeted()
     {
-        $this->entities = $entities;
+        return $this->retweeted;
     }
 }

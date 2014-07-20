@@ -106,25 +106,9 @@ class User implements UserInterface
     /**
      * {@inheritDoc}
      */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
     }
 
     /**
@@ -138,25 +122,9 @@ class User implements UserInterface
     /**
      * {@inheritDoc}
      */
-    public function setScreenName($screenName)
-    {
-        $this->screenName = $screenName;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
     }
 
     /**
@@ -170,25 +138,9 @@ class User implements UserInterface
     /**
      * {@inheritDoc}
      */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getFollowersCount()
     {
         return $this->followersCount;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setFollowersCount($followersCount)
-    {
-        $this->followersCount = $followersCount;
     }
 
     /**
@@ -202,25 +154,9 @@ class User implements UserInterface
     /**
      * {@inheritDoc}
      */
-    public function setFriendsCount($friendsCount)
-    {
-        $this->friendsCount = $friendsCount;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getListedCount()
     {
         return $this->listedCount;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setListedCount($listsCount)
-    {
-        $this->listedCount = $listsCount;
     }
 
     /**
@@ -234,25 +170,9 @@ class User implements UserInterface
     /**
      * {@inheritDoc}
      */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getFavouritesCount()
     {
         return $this->favouritesCount;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setFavouritesCount($favoritesCount)
-    {
-        $this->favouritesCount = $favoritesCount;
     }
 
     /**
@@ -266,24 +186,8 @@ class User implements UserInterface
     /**
      * {@inheritDoc}
      */
-    public function setStatusesCount($statusCount)
-    {
-        $this->statusesCount = $statusCount;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getLang()
     {
         return $this->lang;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setLang($lang)
-    {
-        $this->lang = $lang;
     }
 }

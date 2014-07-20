@@ -36,7 +36,9 @@ class ReplyHelper
             $tweet->getUser()->getLang() === "de" &&
             null === $tweet->getInReplyToStatusId() &&
             !$this->locker->isLocked($tweet) &&
-            preg_match('/nicki/i', $tweet->getText()) === false
+            $tweet->getRetweeted() == false &&
+            preg_match('/^rt /i', $tweet->getText()) == false &&
+            preg_match('/nicki/i', $tweet->getText()) == false
             ;
     }
 

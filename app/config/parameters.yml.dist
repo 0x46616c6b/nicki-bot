@@ -7,7 +7,7 @@ parameters:
     locale:                 de
     secret:                 V3ryS3cr3t
 
-    consumer_key:           C0QVlbdrP0qxeTNblLSwn0e0G
-    consumer_secret:        TZ4Q21ro4WAIxELu8Wk22XVSAEUEfggiYK5ixyHlSJx00OUBmM
-    access_token:           92558571-GCxeihClPU9ls2UQq0duZNBlLvx67gQP91pXiuEW9
-    access_token_secret:    1SokEqG1qjlPoidT5kZoFQdMFPXTVCYiyouIVP6QL2shJ
+    consumer_key:           CONSUMER_KEY
+    consumer_secret:        CONSUMER_SECRET
+    access_token:           ACCESS_TOKEN
+    access_token_secret:    ACCESS_TOKEN_SECRET

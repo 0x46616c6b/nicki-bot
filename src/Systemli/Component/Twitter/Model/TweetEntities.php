@@ -55,25 +55,9 @@ class TweetEntities implements TweetEntitiesInterface
     /**
      * {@inheritDoc}
      */
-    public function setHashtags($hashtags)
-    {
-        $this->hashtags = $hashtags;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getSymbols()
     {
         return $this->symbols;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setSymbols($symbols)
-    {
-        $this->symbols = $symbols;
     }
 
     /**
@@ -87,14 +71,6 @@ class TweetEntities implements TweetEntitiesInterface
     /**
      * {@inheritDoc}
      */
-    public function setUrls($urls)
-    {
-        $this->urls = $urls;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getUserMentions()
     {
         return $this->userMentions;
@@ -103,24 +79,8 @@ class TweetEntities implements TweetEntitiesInterface
     /**
      * {@inheritDoc}
      */
-    public function setUserMentions($userMentions)
-    {
-        $this->userMentions = $userMentions;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getMedia()
     {
         return $this->media;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setMedia($media)
-    {
-        $this->media = $media;
     }
 }
