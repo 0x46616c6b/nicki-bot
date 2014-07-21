@@ -83,4 +83,36 @@ class TweetEntities implements TweetEntitiesInterface
     {
         return $this->media;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    function hasSymbols()
+    {
+        return count($this->symbols) > 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    function hasHashTags()
+    {
+        return count($this->hashtags) > 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    function hasUserMentions()
+    {
+        return count($this->userMentions) > 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    function hasUrls()
+    {
+        return count($this->urls) > 0;
+    }
 }

@@ -31,4 +31,24 @@ interface TweetEntitiesInterface
      * @return array
      */
     function getMedia();
+
+    /**
+     * @return bool
+     */
+    function hasSymbols();
+
+    /**
+     * @return bool
+     */
+    function hasHashTags();
+
+    /**
+     * @return bool
+     */
+    function hasUserMentions();
+
+    /**
+     * @return bool
+     */
+    function hasUrls();
 }

@@ -19,6 +19,7 @@ services:
           - [setDecider, [@systemli.twitter.helper.decider_language]]
           - [setDecider, [@systemli.twitter.helper.decider_type]]
           - [setDecider, [@systemli.twitter.helper.decider_lock]]
+          - [setDecider, [@systemli.twitter.helper.decider_url]]
           - [setDecider, [@systemli.twitter.helper.decider_content]]
 
     systemli.twitter.helper.decider_language:
@@ -33,6 +34,9 @@ services:
 
     systemli.twitter.helper.decider_content:
         class: Systemli\Component\Twitter\Helper\ReplyContentDecider
+
+    systemli.twitter.helper.decider_url:
+        class: Systemli\Component\Twitter\Helper\ReplyUrlDecider
 
     systemli.twitter.locker.tweet_locker:
         class: Systemli\Component\Twitter\Locker\TweetLocker

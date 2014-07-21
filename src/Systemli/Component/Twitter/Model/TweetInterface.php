@@ -58,7 +58,7 @@ interface TweetInterface
     function getLang();
 
     /**
-     * @return array
+     * @return TweetEntitiesInterface
      */
     function getEntities();
 
