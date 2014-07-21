@@ -10,7 +10,7 @@ use Systemli\Component\Twitter\Model\TweetInterface;
 class ReplyContentDecider implements ReplyDeciderInterface
 {
     private $pattern = array(
-        '/(^rt |nicki|spreadshirt|offer|deal|archiv|preisabschlag|israel|gaza|angebot)/i',
+        '/(^rt |nicki|spreadshirt|offer|deal|archiv|preisabschlag|israel|gaza|angebot|shop|amazon|ebay)/i',
     );
 
     /**
